@@ -1,0 +1,28 @@
+<ng-container *ngFor="let node of childs">
+    @if (node.type == 'folder') {
+    <details>
+        <summary class="menu-item">
+            <i class="material-icons">folder</i>
+            {{node.data}}
+            <i class="material-icons dropdown-icon">chevron_right</i>
+        </summary>
+        <div class="sub-menu">
+            @if (haschilde(node)) {
+            <app-tree [childs]="node.childern"></app-tree>
+            } @else {
+            <!-- <div class="menu-item sub-item">
+                <i class="material-icons">description</i>
+                {{node.data}}
+            </div> -->
+            }
+        </div>
+    </details>
+    }@else {
+        <!-- <div class="sub-menu"> -->
+            <div class="menu-item sub-item">
+                <i class="material-icons">description</i>
+                {{node.data}}
+            </div>
+        <!-- </div> -->
+    }
+</ng-container>

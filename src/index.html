@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Cloud</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ===== Google Drive Theme Variables ===== */
+    :root {
+      --google-blue: #1a73e8;
+      --google-blue-hover: #1765cc;
+      --google-yellow: #fbbc04;
+      --google-gray: #f1f3f4;
+      --google-dark-text: #202124;
+      --google-light-text: #5f6368;
+      --google-border: #e0e0e0;
+    }
+
+    /* ===== Main Layout ===== */
+    :host {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--google-gray);
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: 280px;
+      height: 100%;
+      background: white;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+      user-select: none;
+      overflow-y: auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 24px 16px;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--google-light-text);
+      border-bottom: 1px solid var(--google-border);
+    }
+
+    .logo i {
+      color: var(--google-blue);
+      font-size: 28px;
+    }
+
+    /* ===== Tree Component ===== */
+    .menu-items {
+      padding: 8px 0;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 24px;
+      cursor: pointer;
+      color: var(--google-dark-text);
+      font-size: 14px;
+      border-radius: 0 25px 25px 0;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .menu-item:hover {
+      background: var(--google-gray);
+    }
+
+    .menu-item i {
+      font-size: 20px;
+      color: var(--google-light-text);
+    }
+
+    details[open]>summary .dropdown-icon {
+      transform: rotate(90deg);
+    }
+
+    .dropdown-icon {
+      margin-left: auto;
+      transition: transform 0.2s ease;
+      font-size: 18px !important;
+    }
+
+    .sub-menu {
+      margin-left: 32px;
+      border-left: 1px solid var(--google-border);
+      padding-left: 8px;
+    }
+
+    .sub-item {
+      padding-left: 12px !important;
+    }
+
+    .sub-item:hover {
+      background: #e8f0fe !important;
+    }
+
+    .sub-item i {
+      color: #8ab4f8 !important;
+    }
+
+    /* ===== Content Area ===== */
+    .main-content {
+      flex: 1;
+      padding: 24px 32px;
+      background: var(--google-gray);
+      overflow-y: auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--google-dark-text);
+      margin: 0;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      background: var(--google-gray);
+      color: var(--google-light-text);
+    }
+
+    .btn:hover {
+      background: #e8e8e9;
+    }
+
+    .btn-primary {
+      background: var(--google-blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--google-blue-hover);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ===== File Grid ===== */
+    .file-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .file-item {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid var(--google-border);
+    }
+
+    .file-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .file-icon {
+      font-size: 48px !important;
+      color: var(--google-light-text);
+    }
+
+    .file-icon[data-icon="folder"] {
+      color: var(--google-yellow);
+    }
+
+    .file-name {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--google-dark-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .file-details {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--google-light-text);
+    }
+
+    /* body {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    } */
+  </style>
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>

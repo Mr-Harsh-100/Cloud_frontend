@@ -1,0 +1,28 @@
+<div class="main-content">
+    <header class="header">
+        <h1 class="header-title">My Drive</h1>
+        <div class="header-buttons">
+            <button class="btn" (click)="createFolder()">
+                <i class="material-icons">add</i>
+                New
+            </button>
+            <form  #uplodform method="post" enctype="multipart/form-data">
+                <input type="file" id="upload" name="myfiles" hidden (input)="uplodfile(uplodform)" multiple />
+                <label class="btn btn-primary" for="upload">
+                    <i class="material-icons">upload</i>
+                    Upload
+                </label>
+            </form>
+        </div>
+    </header>
+
+    <div class="file-grid">
+        @for (item of folderdata; track $index) {
+        <div [appPopup]="item.data" class="file-item" (dblclick)="!item.data.includes('.')?redirect(item.data):downlod(item.data)">
+            <i class="material-icons file-icon">{{ !item.data.includes('.') ?'folder':'description'}}</i>
+            <div class="file-name">{{item.data}}</div>
+            <div class="file-details">{{ !item.data.includes('.') ?(item.details.bulkSize/1024).toFixed(2):(item.details.size/1024).toFixed(2)}} KB</div>
+        </div>
+        }
+    </div>
+</div>

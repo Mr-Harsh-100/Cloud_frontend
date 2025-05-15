@@ -1,0 +1,50 @@
+<nav class="sidebar">
+    <div class="logo">
+        <i class="material-icons">cloud</i>
+        Drive
+    </div>
+    <div class="menu-items">
+        <details>
+            <summary class="menu-item">
+                <i class="material-icons">folder</i>
+                My Drive
+                <i class="material-icons dropdown-icon">chevron_right</i>
+            </summary>
+            <div class="sub-menu">
+                <div class="menu-item sub-item">
+                    <i class="material-icons">description</i>
+                    Projects
+                </div>
+                <div class="menu-item sub-item">
+                    <i class="material-icons">description</i>
+                    Personal
+                </div>
+                <div class="menu-item sub-item">
+                    <i class="material-icons">description</i>
+                    Shared
+                </div>
+            </div>
+        </details>
+        <app-tree [childs]="mydata" ></app-tree>
+        <div class="menu-item">
+            <i class="material-icons">computer</i>
+            Computers
+        </div>
+        <div class="menu-item">
+            <i class="material-icons">people</i>
+            Shared with me
+        </div>
+        <div class="menu-item">
+            <i class="material-icons">schedule</i>
+            Recent
+        </div>
+        <div class="menu-item">
+            <i class="material-icons">star</i>
+            Starred
+        </div>
+        <div class="menu-item">
+            <i class="material-icons">delete</i>
+            Trash
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,61 @@
+<div class="otp-container">
+    <!-- Notification Toast -->
+    <div *ngIf="notification.show" class="notification-toast {{notification.type}}">
+        {{notification.message}}
+    </div>
+
+    <div class="otp-card">
+        <h2 class="otp-title">User varification</h2>
+
+        <div *ngIf="!showOtpForm" class="email-form">
+            <p class="otp-description">We'll send a verification code to your email</p>
+
+            <form [formGroup]="emailForm" (ngSubmit)="sendOtp()">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" formControlName="email" placeholder="Enter your email">
+                    <i class="material-icons">email</i>
+                    <div *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched"
+                        class="error-message">
+                        {{emailForm.get('email')?.hasError('required') ? 'Email is required' : 'Please
+                        enteravalidemail'}}
+                    </div>
+                </div>
+
+                <button class="submit-btn" type="submit" [disabled]="emailForm.invalid">
+                    Send OTP
+                </button>
+            </form>
+        </div>
+
+        <div *ngIf="showOtpForm" class="otp-form">
+            <p class="otp-description">Enter the 6-digit code sent to {{emailForm.value.email}}</p>
+
+            <form [formGroup]="otpForm" (ngSubmit)="verifyOtp()">
+                <div class="otp-inputs">
+                    <input #digit1 maxlength="1" formControlName="digit1" (input)="moveFocus($event, digit2)"
+                        type="text">
+                    <input #digit2 maxlength="1" formControlName="digit2" (input)="moveFocus($event, digit3)"
+                        type="text">
+                    <input #digit3 maxlength="1" formControlName="digit3" (input)="moveFocus($event, digit4)"
+                        type="text">
+                    <input #digit4 maxlength="1" formControlName="digit4" (input)="moveFocus($event, digit5)"
+                        type="text">
+                    <input #digit5 maxlength="1" formControlName="digit5" (input)="moveFocus($event, digit6)"
+                        type="text">
+                    <input #digit6 maxlength="1" formControlName="digit6" type="text">
+                </div>
+
+                <div class="resend-container">
+                    <button type="button" (click)="sendOtp()" [disabled]="resendDisabled">
+                        Resend OTP {{countdown > 0 ? '(' + countdown + 's)' : ''}}
+                    </button>
+                </div>
+
+                <button class="verify-btn" type="submit" [disabled]="otpForm.invalid">
+                    Verify
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

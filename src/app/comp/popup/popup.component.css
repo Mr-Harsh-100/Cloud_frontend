@@ -1,0 +1,110 @@
+/* .popup{
+    position: fixed;
+    width: 200px;
+    border: 1px solid rgb(236, 236, 236);
+    box-shadow: 1px 1px 1px rgb(236, 236, 236);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: #fffafa;
+}
+
+.menu-item {
+    padding: 5px 8px;
+    border-radius: 8px;
+    margin: 0px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #5f6368;
+    position: relative;
+}
+
+.menu-item:hover {
+    background-color: #e0e0e0;
+} */
+
+
+/* ===== Popup Container ===== */
+.popup {
+    position: absolute;
+    width: 220px;
+    padding: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.1),
+        /* Soft shadow */
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    /* Subtle border */
+    background: white;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    animation: fadeIn 0.15s ease-out;
+    transform-origin: top left;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== Menu Items ===== */
+.popup .menu-item {
+    padding: 8px 16px;
+    margin: 0 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #202124;
+    font-size: 14px;
+    transition:
+        background-color 0.1s ease,
+        color 0.1s ease;
+}
+
+.popup .menu-item i {
+    font-size: 20px;
+    color: #5f6368;
+    transition: color 0.1s ease;
+}
+
+/* Hover State */
+.popup .menu-item:hover {
+    background-color: #f1f3f4;
+    /* Light gray */
+}
+
+.popup .menu-item:hover i {
+    color: #1a73e8;
+    /* Google blue */
+}
+
+/* Danger Item (Delete) */
+.popup .menu-item:first-child:hover {
+    background-color: #fce8e6;
+    /* Light red */
+}
+
+.popup .menu-item:first-child:hover i {
+    color: #d93025;
+    /* Google red */
+}
+
+/* Active State */
+.popup .menu-item:active {
+    background-color: #e8f0fe;
+    /* Light blue */
+}
